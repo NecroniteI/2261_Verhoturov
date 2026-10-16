@@ -427,7 +427,7 @@ n = int(input())
 masha = 0
 dasha = 0
 
-for _ in range(n):
+for i in range(n):
   car = int(input())
   if car % 3 == 0:
     masha += 2
