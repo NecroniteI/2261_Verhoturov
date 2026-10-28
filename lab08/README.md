@@ -76,8 +76,8 @@ forc(i, from, to)
 *которая будет раскрываться в следующий код.*
 ```
 {
-   int __i = from;
-   for(const int i=from, __n=to; i < __n; __i++) {
+   int __i = from, __n=to;
+   for(const int i= __i; i < __n; __i++) {
       ...
    }
 }
