@@ -136,10 +136,10 @@ def t(i)
 
 *Алгоритм должен быть записан через цикл* **while** *и реализовывать инвариант цикла*
 
-t(left)=False ∧ T(right)=True
+t(left)=False ∧ t(right)=True
 
 ```
-left = 0
+left = -1
 right = 10**18
 while ...:
    mid = ...
