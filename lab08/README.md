@@ -77,7 +77,7 @@ forc(i, from, to)
 ```
 {
    int __i = from, __n=to;
-   for(const int i= __i; i < __n; __i++) {
+   for(const int &i= __i; i < __n; __i++) {
       ...
    }
 }
