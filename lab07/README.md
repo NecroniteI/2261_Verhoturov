@@ -231,7 +231,7 @@ for i in range(t):
 t = int(input())
 
 answers = []
-for _ in range(t):
+for i in range(t):
     a, b, c, d, e, f, g, h = map(int, input().split())
 
     left_num = a * d + c * b
