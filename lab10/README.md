@@ -92,6 +92,27 @@ int main(){
 
 *Записанную программу сохраните в папке с номером задания.*
 
+**Ответ:**  
+
+```
+#include <iostream>
+
+int main() {
+    int number = 6;
+    int mask = 3;
+
+    int *numberPtr = &number;
+    int &numberRef = number;
+
+    int product = (*numberPtr) * mask;
+    int bitwiseAnd = numberRef & mask;
+
+    std::cout << product << ' ' << bitwiseAnd << std::endl;
+}
+```
+
+В программе токен * используется для объявления указателя numberPtr, его разыменования *numberPtr и умножения на mask. Токен & применяется для взятия адреса &number, объявления ссылки numberRef и побитового И(numberRef & mask).
+
 ### Задание 4 **(2)**
 
 *Выпишите значения всех переменных, в том числе указателей,
@@ -110,6 +131,31 @@ c += a;
 q = p ;
 *q += 10;
 ```
+
+**Ответ:**  
+
+1. unsigned a = 8, b = 3 ,c = 17; - объявляются и инициализируются переменные a, b, c.  
+   Значения: a = 8, b = 3, c = 17.
+2. unsigned *p = &a; - объявляется указатель p, в него записывается адрес переменной a.  
+   Значения: a = 8, b = 3, c = 17, p = &a.
+3. unsigned *q = &b; - объявляется указатель q, в него записывается адрес переменной b.  
+   Значения: a = 8, b = 3, c = 17, p = &a, q = &b.
+4. *p += *q + c; - к значению по адресу p (a) прибавляется сумма значения по адресу q (b, то есть 3) и c (17).  
+   Значения: a = 28, b = 3, c = 17, p = &a, q = &b.
+5. c = *q; - в переменную c записывается значение по адресу q (значение b).  
+   Значения: a = 28, b = 3, c = 3, p = &a, q = &b.
+6. p = &c; - указатель p перенаправляется на переменную c (теперь хранит её адрес).  
+   Значения: a = 28, b = 3, c = 3, p = &c, q = &b.
+7. c += a; - к значению c прибавляется значение a.  
+   Значения: a = 28, b = 3, c = 31, p = &c, q = &b.
+8. *p += 10; - значение по адресу p (переменная c) увеличивается на 10.  
+   Значения: a = 28, b = 3, c = 41, p = &c, q = &b.
+9. *q = *p; - по адресу q (в переменную b) записывается значение по адресу p (значение c).  
+   Значения: a = 28, b = 41, c = 41, p = &c, q = &b.
+10. q = p ; - указателю q присваивается адрес из p, теперь оба указателя ссылаются на c.  
+    Значения: a = 28, b = 41, c = 41, p = &c, q = &c.
+11. *q += 10; - значение по адресу q (переменная c) увеличивается на 10 (переменная b не изменяется).  
+    Значения: a = 28, b = 41, c = 51, p = &c, q = &c.
 
 ### Задание 5 **(1)**
 
@@ -236,7 +282,7 @@ int *q = &x[5];
 ```
 
 **Ответ:**  
-Нет разницы, так как x + 5 и x[5] это одно и то же.
+Нет разницы, так как x + 5 и x[5] указывают на одинаковый элемент в массиве.
 
 ### Задание 11 **(3)**
 
@@ -268,4 +314,123 @@ int main(){
 		s += *p;
 	std::cout << s;
 }
+```
+
+### Решение задач на Python
+
+### Задание 1
+
+```py
+def is_prime(num):
+    if num < 2:
+        return False
+    for d in range(2, int(num ** 0.5) + 1):
+        if num % d == 0:
+            return False
+    return True
+
+
+n = int(input())
+count = 0
+current = 1
+
+while count < n:
+    current += 1
+    if is_prime(current):
+        count += 1
+
+print(current)
+```
+
+### Задание 2
+
+```py
+n = int(input())
+dresses = list(map(int, input().split()))
+
+worn = set()
+answer = n
+
+for i in range(n):
+    worn.add(dresses[i])
+    if len(worn) == 3:
+        answer = i + 1
+        break
+
+print(answer)
+```
+
+### Задание 3
+
+```py
+letters = "qwertyuiopasdfghjklzxcvbnm"
+
+word = input().strip()
+
+best_char = ""
+max_count = 0
+
+for ch in letters:
+    cnt = word.count(ch)
+    if cnt > max_count:
+        max_count = cnt
+        best_char = ch
+
+print(word.replace(best_char, ""))
+```
+
+### Задание 4
+
+```py
+row1 = "1234567890"
+row2 = "qwertyuiop"
+row3 = "asdfghjkl"
+row4 = "zxcvbnm"
+
+n = int(input())
+
+for _ in range(n):
+    password = input().strip()
+    has_row1 = False
+    has_row2 = False
+    has_row3 = False
+    has_row4 = False
+
+    for ch in password:
+        if ch in row1:
+            has_row1 = True
+        elif ch in row2:
+            has_row2 = True
+        elif ch in row3:
+            has_row3 = True
+        elif ch in row4:
+            has_row4 = True
+
+    if has_row1 and has_row2 and has_row3 and has_row4:
+        print("strong")
+    else:
+        print("weak")
+```
+
+### Задание 5
+
+```py
+ranks = ["6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
+
+trump = input().strip()
+n = int(input())
+results = []
+
+for i in range(n):
+    atk_rank, atk_suit = input().split()
+    def_rank, def_suit = input().split()
+
+    if def_suit == atk_suit and ranks.index(def_rank) > ranks.index(atk_rank):
+        results.append(1)
+    elif def_suit == trump and atk_suit != trump:
+        results.append(1)
+    else:
+        results.append(0)
+
+print(*results)
 ```

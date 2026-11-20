@@ -1,12 +1,14 @@
 #include <iostream>
 
 int main() {
-	int a = 5, b = 4;
+    int number = 6;
+    int mask = 3;
 
-	int *c = &a;
+    int *numberPtr = &number;
+    int &numberRef = number;
 
-	*c = 3;
+    int product = (*numberPtr) * mask;
+    int bitwiseAnd = numberRef & mask;
 
-	std::cout << a * b;
-
+    std::cout << product << ' ' << bitwiseAnd << std::endl;
 }
